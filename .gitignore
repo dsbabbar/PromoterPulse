@@ -1,0 +1,23 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Throwaway render screenshots
+_shot*.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Note: data/raw/*.csv and docs/data/*.json ARE committed on purpose —
+# the raw exports are the canonical inputs and the generated JSON is what
+# GitHub Pages serves. Do not ignore them.

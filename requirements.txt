@@ -1,0 +1,12 @@
+# PromoterPulse — Python dependencies
+#
+# NONE required. The ingestion pipeline (pipeline/) and the test suite (tests/)
+# use only the Python standard library (csv, json, re, datetime, pathlib), so
+# the project runs anywhere with Python 3.10+ and has zero supply-chain surface.
+#
+#   Run the pipeline:  python3 pipeline/ingest.py
+#   Run the tests:     python3 tests/run_tests.py
+#
+# Optional: `pytest` also discovers the tests/ files if you prefer its output.
+# Installing it on this (PEP-668 managed) machine needs either a venv
+# (sudo apt install python3.12-venv) or:  pip install --user --break-system-packages pytest
