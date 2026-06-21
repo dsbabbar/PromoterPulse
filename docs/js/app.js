@@ -3,9 +3,12 @@ import { loadAll, state } from "./data.js";
 import { initInsider, showInsider, hideInsider } from "./insider.js";
 import { showCorp, hideCorp } from "./corpactions.js";
 import { parseHash } from "./hash.js";
+import { initTheme } from "./theme.js";
 import { $, el, fmtInt, fmtDate, label } from "./util.js";
 
 const TABS = ["insider", "corpactions", "openoffers", "preferential"];
+let currentTab = "insider";
+let bootParams = {};
 
 async function boot() {
   try {
@@ -24,9 +27,13 @@ async function boot() {
   $("#genstamp").textContent = state.meta ? "data generated " + state.meta.generated_at.replace("T", " ") : "";
 
   const { tab, params } = parseHash();
+  bootParams = params;
   initInsider(params);              // default tab is always prepared first
   wireTabs(params);
   switchTab(TABS.includes(tab) ? tab : "insider", params);
+
+  // Theme picker: re-render the active tab so charts pick up new colours.
+  initTheme(() => switchTab(currentTab, bootParams));
 }
 
 function wireTabs(params) {
@@ -36,6 +43,7 @@ function wireTabs(params) {
 }
 
 function switchTab(tab, params) {
+  currentTab = tab;
   for (const b of document.querySelectorAll(".tab")) b.classList.toggle("active", b.dataset.tab === tab);
   for (const s of document.querySelectorAll(".tabpanel")) s.classList.toggle("active", s.id === "tab-" + tab);
   hideInsider(); hideCorp();

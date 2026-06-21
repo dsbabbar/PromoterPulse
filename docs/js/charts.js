@@ -4,18 +4,30 @@
 const Chart = window.Chart;
 const registry = new Map();
 
-const C = {
-  buy: "#2ecc8f", sell: "#ff6b6b", accent: "#4c9aff", warn: "#f5a623",
-  pledge: "#b98bff", grid: "rgba(255,255,255,.06)", text: "#8b98a8",
-};
+// Fixed, vivid data colours that read well on every theme.
+const C = { buy: "#2ecc8f", sell: "#ff6b6b", accent: "#4c9aff" };
 const PALETTE = ["#4c9aff", "#2ecc8f", "#f5a623", "#b98bff", "#ff6b6b", "#4dd0e1",
                  "#ffd54f", "#a5d6a7", "#f48fb1", "#90caf9"];
 
-Chart.defaults.color = C.text;
+// Theme-driven colours, refreshed from CSS variables before each render.
+let gridColor = "rgba(255,255,255,.06)";
+let cardColor = "#1b232e";
+
 Chart.defaults.font.family = "-apple-system, Segoe UI, Roboto, sans-serif";
 Chart.defaults.font.size = 11;
 
+const cssVar = (name, fallback) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+
+function syncTheme() {
+  gridColor = cssVar("--grid", gridColor);
+  cardColor = cssVar("--card", cardColor);
+  const muted = cssVar("--muted", "");
+  if (muted) Chart.defaults.color = muted;
+}
+
 function render(canvasId, config) {
+  syncTheme();
   const ctx = document.getElementById(canvasId);
   if (!ctx) return;
   if (registry.has(canvasId)) registry.get(canvasId).destroy();
@@ -26,10 +38,13 @@ function render(canvasId, config) {
   registry.set(canvasId, new Chart(ctx, config));
 }
 
-const linScales = (stacked = false) => ({
-  x: { stacked, grid: { color: C.grid } },
-  y: { stacked, grid: { color: C.grid }, ticks: { callback: (v) => v } },
-});
+const linScales = (stacked = false) => {
+  const g = cssVar("--grid", gridColor);
+  return {
+    x: { stacked, grid: { color: g } },
+    y: { stacked, grid: { color: g }, ticks: { callback: (v) => v } },
+  };
+};
 
 export function dailyBuySell(id, series) {
   render(id, {
@@ -50,7 +65,7 @@ export function categoryDoughnut(id, entries, labelFn) {
     type: "doughnut",
     data: {
       labels: entries.map((e) => labelFn(e[0])),
-      datasets: [{ data: entries.map((e) => +(e[1] / 1e7).toFixed(2)), backgroundColor: PALETTE, borderColor: "#1b232e", borderWidth: 2 }],
+      datasets: [{ data: entries.map((e) => +(e[1] / 1e7).toFixed(2)), backgroundColor: PALETTE, borderColor: cssVar("--card", cardColor), borderWidth: 2 }],
     },
     options: { plugins: { legend: { position: "right" }, tooltip: { callbacks: { label: (c) => `${c.label}: ${c.parsed} cr` } } } },
   });

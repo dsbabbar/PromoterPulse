@@ -6,6 +6,7 @@
 <title>PromoterPulse — Indian Insider Trading & Corporate Actions</title>
 <meta name="description" content="Insider trading and corporate-action analytics for Indian listed companies, built from BSE & NSE disclosures." />
 <link rel="stylesheet" href="css/styles.css" />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("pp.theme")||"dark");}catch(e){}</script>
 </head>
 <body>
 <header class="topbar">
@@ -16,7 +17,19 @@
       <p class="tagline">Indian insider trading &amp; corporate actions — from BSE &amp; NSE disclosures</p>
     </div>
   </div>
-  <div class="freshness" id="freshness" title="Latest disclosure dates present in the loaded data"></div>
+  <div class="topbar-right">
+    <label class="theme-pick">Theme
+      <select id="themeSelect" title="Switch colour theme">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="midnight">Midnight (OLED)</option>
+        <option value="sepia">Sepia</option>
+        <option value="contrast">High contrast</option>
+        <option value="auto">Auto (system)</option>
+      </select>
+    </label>
+    <div class="freshness" id="freshness" title="Latest disclosure dates present in the loaded data"></div>
+  </div>
 </header>
 
 <nav class="tabs" id="tabs">

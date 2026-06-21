@@ -1,19 +1,45 @@
-:root {
-  --bg: #0f1419;
-  --bg-soft: #161c24;
-  --card: #1b232e;
-  --card-2: #212b38;
-  --line: #2c3846;
-  --text: #e6edf3;
-  --muted: #8b98a8;
-  --accent: #4c9aff;
-  --buy: #2ecc8f;
-  --sell: #ff6b6b;
-  --warn: #f5a623;
-  --pledge: #b98bff;
-  --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,.4);
+/* ----------------------------- themes -------------------------------- */
+/* Default theme = Dark (also used by data-theme="dark" and "auto" at night). */
+:root, html[data-theme="dark"], html[data-theme="auto"] {
+  --bg: #0f1419; --bg-soft: #161c24; --card: #1b232e; --card-2: #212b38;
+  --line: #2c3846; --text: #e6edf3; --muted: #8b98a8; --accent: #4c9aff;
+  --buy: #2ecc8f; --sell: #ff6b6b; --warn: #f5a623; --pledge: #b98bff;
+  --grid: rgba(255,255,255,.06); color-scheme: dark;
 }
+html[data-theme="light"] {
+  --bg: #f4f6f9; --bg-soft: #ffffff; --card: #ffffff; --card-2: #eef2f7;
+  --line: #d8dee6; --text: #1b2430; --muted: #5b6776; --accent: #2563eb;
+  --buy: #0f9d58; --sell: #d93a3a; --warn: #c77700; --pledge: #7c3aed;
+  --grid: rgba(0,0,0,.08); color-scheme: light;
+}
+html[data-theme="midnight"] {
+  --bg: #000000; --bg-soft: #08080b; --card: #101014; --card-2: #16161d;
+  --line: #24242e; --text: #f0f0f5; --muted: #8a8a98; --accent: #6ea8ff;
+  --buy: #34d39a; --sell: #ff7a7a; --warn: #ffb84d; --pledge: #c79bff;
+  --grid: rgba(255,255,255,.05); color-scheme: dark;
+}
+html[data-theme="sepia"] {
+  --bg: #ece0c8; --bg-soft: #faf3e3; --card: #fbf5e8; --card-2: #efe3c9;
+  --line: #d9c7a2; --text: #3a2f21; --muted: #7a6a50; --accent: #b5651d;
+  --buy: #4f7a3a; --sell: #b5432f; --warn: #a9761f; --pledge: #7a5c9e;
+  --grid: rgba(90,70,40,.12); color-scheme: light;
+}
+html[data-theme="contrast"] {
+  --bg: #000000; --bg-soft: #000000; --card: #0a0a0a; --card-2: #141414;
+  --line: #5a5a5a; --text: #ffffff; --muted: #d8d8d8; --accent: #00d0ff;
+  --buy: #00ff95; --sell: #ff5470; --warn: #ffd000; --pledge: #d8a6ff;
+  --grid: rgba(255,255,255,.18); color-scheme: dark;
+}
+/* Auto: adopt the light palette when the OS prefers light. */
+@media (prefers-color-scheme: light) {
+  html[data-theme="auto"] {
+    --bg: #f4f6f9; --bg-soft: #ffffff; --card: #ffffff; --card-2: #eef2f7;
+    --line: #d8dee6; --text: #1b2430; --muted: #5b6776; --accent: #2563eb;
+    --buy: #0f9d58; --sell: #d93a3a; --warn: #c77700; --pledge: #7c3aed;
+    --grid: rgba(0,0,0,.08); color-scheme: light;
+  }
+}
+:root { --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,.25); }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body {
@@ -36,6 +62,12 @@ small { color: var(--muted); font-weight: 400; }
 .logo { color: var(--accent); font-size: 26px; }
 .topbar h1 { font-size: 20px; letter-spacing: .3px; }
 .tagline { margin: 2px 0 0; color: var(--muted); font-size: 12.5px; }
+.topbar-right { display: flex; align-items: center; gap: 18px; }
+.theme-pick { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+.theme-pick select {
+  background: var(--card); color: var(--text); border: 1px solid var(--line);
+  border-radius: 7px; padding: 5px 8px; font-size: 12.5px; cursor: pointer;
+}
 .freshness { font-size: 12px; color: var(--muted); text-align: right; line-height: 1.7; }
 .freshness b { color: var(--text); }
 
@@ -62,7 +94,6 @@ input[type=date], input[type=search] {
   border-radius: 7px; padding: 6px 9px; font-size: 13px;
 }
 input[type=search] { min-width: 220px; flex: 1 1 220px; }
-input[type=date] { color-scheme: dark; }
 .presets { display: inline-flex; gap: 4px; }
 .presets button, button.ghost {
   background: var(--card); border: 1px solid var(--line); color: var(--muted);
