@@ -1,4 +1,4 @@
-# PromoterPulse
+# Catalyst Tracker
 
 A free, self-hosted dashboard for **Indian insider-trading disclosures and corporate
 actions**, built from BSE & NSE exports. It replaces a manual Excel + Power Query
@@ -89,14 +89,14 @@ You only do this **once**. It needs a free GitHub account.
    Choose: **GitHub.com → HTTPS → Login with a web browser**, then paste the code shown.
 2. **Create the repo and push** (run from this folder):
    ```bash
-   gh repo create PromoterPulse --public --source=. --remote=origin --push
+   gh repo create catalyst-tracker --public --source=. --remote=origin --push
    ```
 3. **Turn on GitHub Pages** to serve the `docs/` folder:
    ```bash
-   gh api -X POST repos/:owner/PromoterPulse/pages -f source.branch=main -f source.path=/docs
+   gh api -X POST repos/:owner/catalyst-tracker/pages -f source.branch=main -f source.path=/docs
    ```
    (Or in the browser: repo **Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**.)
-4. Your site appears at `https://<your-username>.github.io/PromoterPulse/` within a minute or two.
+4. Your site appears at `https://<your-username>.github.io/catalyst-tracker/` within a minute or two.
 
 After this, every `./update.sh` pushes new data and the site redeploys automatically.
 

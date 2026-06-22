@@ -1,4 +1,6 @@
-# PromoterPulse — Build Plan
+# Catalyst Tracker — Build Plan
+
+> Originally built as "PromoterPulse"; renamed to **Catalyst Tracker** (repo `catalyst-tracker`).
 
 ## Context
 
@@ -43,7 +45,7 @@ explanations for the one interactive step that can't be automated (`gh auth logi
 ## Architecture
 
 ```
-PromoterPulse/
+catalyst-tracker/
   data/raw/                      # canonical inputs (user drops new exports here)
     insider/bse/*.csv  insider/nse/*.csv
     corporate_actions/bse/*.csv
@@ -110,7 +112,7 @@ top movers.
    GitHub account). After that, repo creation + push + Pages enablement are automated via `gh`. Fallback if
    `gh` is declined: user creates an empty public repo in browser; guided push instead.
 3. Pages: enable Pages → deploy from `main` / `/docs` (via `gh` API or guided clicks). Site URL:
-   `https://<user>.github.io/PromoterPulse/`.
+   `https://<user>.github.io/catalyst-tracker/`.
 4. Refresh workflow: drop new CSVs in `data/raw/...` → run `./update.sh` (ingest → regenerate JSON → commit →
    push) → Pages redeploys automatically.
 

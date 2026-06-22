@@ -1,1 +1,1 @@
-"""PromoterPulse ingestion pipeline (standard-library only)."""
+"""Catalyst Tracker ingestion pipeline (standard-library only)."""

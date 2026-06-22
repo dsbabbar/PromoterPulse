@@ -1,4 +1,4 @@
-# PromoterPulse — Python dependencies
+# Catalyst Tracker — Python dependencies
 #
 # NONE required. The ingestion pipeline (pipeline/) and the test suite (tests/)
 # use only the Python standard library (csv, json, re, datetime, pathlib), so

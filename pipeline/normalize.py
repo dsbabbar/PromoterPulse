@@ -1,4 +1,4 @@
-"""Normalization layer for PromoterPulse.
+"""Normalization layer for Catalyst Tracker.
 
 BSE and NSE describe the same disclosures with different vocabularies and
 formats. Everything downstream (matching, dedup, filtering, grouping) depends on

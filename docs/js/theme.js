@@ -3,7 +3,7 @@
 // everything. Charts re-read CSS variables on each render (see charts.js), so a
 // re-render after a theme change is all that's needed to recolour them.
 
-const KEY = "pp.theme";
+const KEY = "ct.theme";
 export const THEMES = ["dark", "light", "midnight", "sepia", "contrast", "auto"];
 
 export function getTheme() {

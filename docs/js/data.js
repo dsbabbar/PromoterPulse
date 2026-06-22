@@ -23,7 +23,7 @@ export async function loadAll() {
 }
 
 /* ----------------------------- watchlist ------------------------------ */
-const WKEY = "pp.watchlist";
+const WKEY = "ct.watchlist";
 export function getWatch() {
   try { return new Set(JSON.parse(localStorage.getItem(WKEY) || "[]")); }
   catch { return new Set(); }

@@ -1,4 +1,4 @@
-"""Tests for the PromoterPulse pipeline, run against the real sample exports in
+"""Tests for the Catalyst Tracker pipeline, run against the real sample exports in
 data/raw/ (they double as fixtures). Runnable two ways:
 
     python3 tests/run_tests.py     # stdlib runner, zero dependencies
